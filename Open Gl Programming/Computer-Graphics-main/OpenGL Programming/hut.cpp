@@ -1,34 +1,34 @@
 #include <GL/glut.h>
 
-void display() {
+void MY_Init(){
+    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(0.0, 200.0, 0.0, 150.0);
+    glColor3f(1.0, 0.0, 0.0);
+
+
+}
+
+
+void Draw() {
+    glBegin(GL_LINE_LOOP);
     glClear(GL_COLOR_BUFFER_BIT);
-
-    // Draw the base of the hut
-    glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 0.0); // Yellow color
-    glVertex2f(-0.5, -0.5);
-    glVertex2f(-0.5, 0.0);
-    glVertex2f(0.5, 0.0);
-    glVertex2f(0.5, -0.5);
+    glColor3f(0.6, 0.6, 0.6);
+    glRecti(70,70,150,150);
+    glColor3f(0.2, 0.2, 0.2);
+    glRecti(70,50,150,130);
     glEnd();
-
-    // Draw the roof of the hut
-    glBegin(GL_TRIANGLES);
-    glColor3f(1.0, 0.0, 0.0); // Red color
-    glVertex2f(-0.5, 0.0);
-    glVertex2f(0.0, 0.5);
-    glVertex2f(0.5, 0.0);
-    glEnd();
-
     glFlush();
 }
-
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
-    glutCreateWindow("OpenGL Hut");
-    glutInitWindowSize(320, 320);
-    glutInitWindowPosition(50, 50);
-    glutDisplayFunc(display);
+    glutCreateWindow("simple");
+    MY_Init();
+    glutDisplayFunc(Draw);
     glutMainLoop();
-    return 0;
+
+  //  return 0;
 }
+
+
